@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vuedemo</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+       <!--  {{aa}}
+        <chil :fatermethods='xxx'></chil>
+        <texts></texts>
+        <p>
+            <input type="text" v-model='question'>
+        </p>
+        <p>{{answer}}</p>
+       
+        <div v-for='(item , i) in list' :key = 'i'>
+
+            <div :class="[active , 'item'+(i+1)]">{{item}}{{i}}</div>
+        </div> -->
+
+       <!--  <div v-if="logintype == 'username'">
+            <label for="user">user</label>
+            <input type="text" id="user" key="xx">
+        </div>
+        <div v-else>
+            <label for="email">email</label>
+            <input type="text" id="email" key='ss'>
+        </div>
+        <div class="active" @click='chang'></div> -->
+        <!-- <div v-for="n in even(names)">{{n}}</div>-->
+        <form v-on:submit.prevent = "addNewTodo">
+            <label for="new-todo">Add a todo</label>
+            <input type="text" id="new-todo" placeholder="E.g. feed the cat" v-model="newTodoText">
+            <button>Add</button>
+        </form>
+        <ul>
+            <li
+            is="todo-item"
+
+            >
+
+            </li>
+        </ul>
+
+
+    </div>
+</body>
+<script type="text/javascript">
+   
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            aa: '121',
+            question:'',
+            answer:'hello',
+            active: true,
+            logintrue:true,
+            logintype:'username',
+            names:[1,2,3,4,5,6,7,8,9], 
+            list:[
+                {a:'1'},
+                {b:'1'},    
+                {c:'1'},
+                {d:'1'},
+                {e:'1'},
+                {f:'1'}
+            ]
+        },
+       /*  computed: {
+            review() {
+                return this.a + 12312321
+            }
+        }, */
+        computed: {
+          namecom:function(){
+              return this.names.filter(function(n){
+                  return n%2 == 0;
+              });
+          }  
+        },
+        watch: {
+            /* aa:function(neww,old) {
+               console.log(neww , old);
+            } */
+            question:function(){
+                this.answer = 'hi';
+                setTimeout(() => {
+                    this.anmethods();
+                }, 500);
+            }
+        },
+        methods: {
+            /*  fathermethods(e){
+                 console.log('aaadf')
+             } */
+            /* xxx(e){
+                console.log('12321' , e)
+            } */
+            even(b){
+               return b.filter(function(n){ 
+                    return n%2 === 0;
+                })
+            },
+            chang(){
+                this.logintrue = !this.logintrue;
+                this.logintrue?this.logintype = 'username':this.logintype = 'email';
+            },
+            anmethods(){
+                if(this.question.indexOf('?') === -1){
+                     this.answer = 'yes';
+                     return   
+                }
+                this.answer = 'thinks...';
+                var vm = this;
+                axios.get('www.baidu.com').then(function(resolve){
+                        vm.answer = 'baidu'
+                }).catch(function(err){
+                            vm.answer = 'err'
+                });
+
+
+            },
+
+            xxx() {
+                console.log('adafasdfasfas')
+            },
+            /* revie(){
+                this.a = new Date();
+            }
+     */
+        },
+        components: {
+            texts: {
+                template: '<div><button></button>clickasf</div>'
+            }
+        }
+
+
+    });
+
+    Vue.component('chil', {
+        data() {
+            return {
+                b: 123
+            }
+        },
+        template:'',
+        // template: '<div><h1 @click="clickfun">...hello{{b}}</h1><slot></slot></div>',
+        props: {
+            fatermethods: {
+                type: Function,
+                default: null
+            }
+        },
+        methods: {
+            //子调父的第一种方法 this.$parent.fatermethods
+            /* clickfun(){
+                console.log('asf');
+                this.$parent.fathermethods()
+            } */
+
+            /*  clickfun(){
+                 this.$emit('fatermethods','elemt')
+             } */
+            clickfun() {
+                this.fatermethods()
+            }
+
+        }
+    })
+</script>
+<style>
+
+    .active{
+        background: red;
+        width: 100px;
+        height: 100px;
+    }
+    .item3{
+        background: red;
+        width: 100px;
+        height: 100px;
+    }
+</style>
+</html>

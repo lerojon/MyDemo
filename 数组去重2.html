@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组去重</title>
+</head>
+
+<body>
+<button id="declick">点我</button>
+    <script>
+        /**
+         * 防抖节流的实现
+         */
+        let declick = document.getElementById('declick');
+        declick.addEventListener("click",
+            debounce(testFn,2000)
+
+        );
+
+        // let timeout = setTimeout(()=>{
+        //
+        // },2000)
+            function testFn (){
+                console.log('tests')
+            }
+
+        //   function debounce (fn,delay){
+        //     let timer = null;
+        //
+        //     return function (){
+        //         console.log('timer:',timer);
+        //         if (timer){
+        //             clearTimeout(timer)
+        //         }
+        //         timer = setTimeout(function (){
+        //                     fn.call(this)
+        //         },delay)
+        //     }
+        // };
+        // clearTimeout(timeout)
+
+        //立即执行
+        function debounce(fn, wait) {
+            let timeout, result;
+            return function () {
+                const context = this
+                const args = arguments
+                clearTimeout(timeout)
+                console.log(timeout)
+                const callNow = !timeout
+                timeout = setTimeout(function() {
+                    timeout = null
+                }, wait)
+                if (callNow) result = fn.apply(context, args)
+                return result
+            }
+        }
+
+
+
+        // lll
+        /*利用对象的属性的唯一性  获取去重的数组 和 无重复的数组*/
+       /* let arr = ['1', '2', '4', '3', '1', '3', 'a', 'a', 'b', 'c', 'a', 'b', '7']
+        let obj = {}
+        let newarr = []
+        for (let i = 0; i < arr.length; i++) {
+            if (!obj[arr[i]]) {
+                obj[arr[i]] = true
+                newarr.push(arr[i])
+            }
+        }
+        console.log(newarr,'testss123123')
+
+        const f = () => console.log('now');
+        (()=>new Promise(resolve=> resolve(f())))();
+        console.log('next');
+
+        // const f = () => console.log('now');
+        // (async () => f())();
+        // console.log('next');*/
+
+
+    </script>
+</body>
+
+</html>

@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-9">
+        <title>数组排序</title>
+        <script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>数组排序</title>
-</head>
+            for(let i = 0 ; i<10 ; i++){
 
-<body>
-    <script>
-        let arr = ['1', '4', '23', '2', '9', '1', '4', '5', '3', '6', '7', '99', '32', '12']
-        let newarr = arr.sort((a, b) => {
-            return a - b;
-        })
-        console.log(arr, newarr);
-    </script>
-</body>
+                for(let j=0 ; j<i ; j++){
+                    document.write((j+1)+'x'+i+'='+(j+1)*i + '  ');
+                    console.log(i,j)
+                }
+                document.write('<br>');
+
+            }
+
+        </script>
+    </head>
+    <body>
+        
+    </body>
 
 </html>

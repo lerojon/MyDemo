@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Eevent Loop</title>
+    <script>
+
+        function func1(){
+            console.log(21);
+        };
+
+        let p = new Promise((resolve) => {
+            setTimeout(() => {
+                console.log(4)
+            }, 0)
+            console.log(8);
+            resolve(6);
+        });
+
+
+        p.then(resolve => {
+            console.log(resolve);
+        });
+        p.then(() => {
+            console.log(3)
+        })
+
+        function func2(){
+            setTimeout(()=>{
+                console.log(333);
+            },0)
+        };
+
+        function func3(){
+            console.log(1111)
+            func2();
+            func1();
+        }
+        func3();
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

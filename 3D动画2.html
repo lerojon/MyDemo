@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D动画2</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+
+        }
+        ul{
+            width: 200px;
+            height: 200px;
+            /* background-color: red; */
+            margin: 100px auto;
+            list-style: none;
+            position: relative;
+            font-size: 36px;
+            transform-style: preserve-3d;
+            
+            animation: sport 6s linear 0s infinite normal;
+        }
+        ul li{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            text-align: center;
+            line-height: 200px;
+            border: 3px solid skyblue;
+            box-sizing: border-box;
+            top: 0;
+            left: 0;
+            background-color: black;
+        }
+        ul li:nth-of-type(1){
+             /* background-color:yellow ; */
+             transform: rotateY(60deg) translateZ(200px);
+        }
+        ul li:nth-of-type(2){
+             /* background-color: green; */
+             transform: rotateY(120deg) translateZ(200px);
+        }
+        ul li:nth-of-type(3){
+             /* background-color: pink; */
+             transform: rotateY(180deg) translateZ(200px);
+        }
+        ul li:nth-of-type(4){
+             /* background-color: purple; */
+             transform: rotateY(240deg) translateZ(200px);
+        }
+        ul li:nth-of-type(5){
+             /* background-color: skyblue; */
+             transform: rotateY(300deg) translateZ(200px);
+        }
+        ul li:nth-of-type(6){
+             /* background-color: tomato; */
+             transform: rotateY(360deg) translateZ(200px);
+        }
+        @keyframes sport {
+            from{
+                transform:rotateX(-10deg) rotateY(0deg);
+            }
+            to{
+                transform:rotateX(-10deg) rotateY(360deg);
+            }
+        }
+        ul:hover{
+            animation-play-state: paused;
+        }
+        ul:hover li img{
+            opacity: 0.5;
+        }
+        ul li:hover img{
+            /* width: 240px; */
+            /* height: 240px; */
+            opacity: 1;
+        }
+        ul li img{
+            width: 100%;
+            height: 100%;
+        }
+        ul li:hover{
+            width: 210px;
+            height: 210px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><img src="./asstes/l1.jpg" alt=""></li>
+        <li><img src="./asstes/l2.jpg" alt=""></li>
+        <li><img src="./asstes/l3.jpg" alt=""></li>
+        <li><img src="./asstes/l4.jpg" alt=""></li>
+        <li><img src="./asstes/l1.jpg" alt=""></li>
+        <li><img src="./asstes/l2.jpg" alt=""></li>
+    </ul>
+</body>
+</html>

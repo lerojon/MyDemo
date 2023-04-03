@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>layout1</title>
+        <style>
+            .header{
+                width: 980px;
+                height: 100px;
+                margin: 0 auto;
+            }
+            .header .box1{
+                width: 250px;
+                height: 100px;
+                background-color: plum;
+                float: left;
+            }
+            .header .box2{
+                width: 150px;
+                height: 50px;
+                background-color:powderblue;
+                float: right;
+            }
+            .header .box3{
+                width: 650px;
+                height: 50px;
+                background-color:purple;
+                float: right;
+            }
+            .content{
+                width: 980px;
+                height: 400px;
+                margin: 10px auto 0;
+            }
+            .content .contentLeft{
+                width: 320px;
+                height: 400px;
+                float: left;
+                background-color: yellow;
+            }
+            .content .contentRight{
+                width: 650px;
+                height: 400px;
+                float: right;
+            }
+            .content .contentRight .RightTop{
+                width: 650px;
+                height: 350px;
+            }
+            .content .contentRight .RightTop .TopLeft{
+                width: 400px;
+                height: 200px;
+                float: left;
+            }
+            .content .contentRight .RightTop .TopRight{
+                width: 240px;
+                height: 350px;
+                background-color: green;
+                float: right;
+            }
+            .content .contentRight .RightTop .TopLeft .leftTop{
+                width: 400px;
+                height: 200px;
+                background-color: hotpink;
+            }
+            .content .contentRight .RightTop .TopLeft .leftBottom{
+                width: 400px;
+                height: 140px;
+                margin-top: 10px;
+                background-color: blue;
+            }
+            .content .contentRight .RightBommto{
+                width: 650px;
+                height: 40px;
+                margin-top: 10px;
+                background-color:chocolate;
+            }
+            .footer{
+                margin: 10px auto 0;
+                width: 980px;
+                height: 40px;
+                background-color: coral;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <div class="box1"></div>
+            <div class="box2"></div>
+            <div class="box3"></div>
+        </div>
+        <div class="content">
+            <div class="contentLeft"></div>
+            <div class="contentRight">
+                <div class="RightTop">
+                    <div class="TopLeft">
+                        <div class="leftTop"></div>
+                        <div class="leftBottom"></div>
+                    </div>
+                    <div class="TopRight"></div>
+                </div>
+                <div class="RightBommto"></div>
+            </div>
+        </div>
+        <div class="footer"></div>
+    </body>
+</html>

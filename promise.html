@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>promise</title>
+    <style>
+        .one {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: red;
+        }
+
+        /* .two {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: green;
+        }
+
+        .three {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: yellow;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="one" id="one"></div>
+    <div class="two"></div>
+    <div class="three"></div>
+</body>
+<script>
+    function sleep(duretion) {
+        return new Promise((resole, reject) => {
+            setTimeout(resole, duretion);
+        });
+    }
+    async function triff(duretion, color) {
+        document.getElementById('one').style.background = color;
+        await sleep(duretion);
+    }
+    // sleep(5000).then(() => {
+    //     console.log('sueecss')
+    // })
+    async function waitfn() {
+        while (true) {
+            await triff(100000, 'yellow');
+            await triff(200000, 'red');
+            await triff(300000, 'green');
+        }
+    }
+    console.log(sleep(1))
+    console.log(waitfn())
+
+    async function w2() {
+        waitfn();
+        console.log('123')
+    }
+
+    // console.log( w2());
+    // waitfn();
+</script>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>carousel</title>
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+            }
+            div{
+                width: 1002px;
+                height: 377px;
+                background-color: #000;
+                border: 1px solid #000;
+                box-sizing: border-box;
+                margin: 100px auto;
+                overflow: hidden;
+            }
+            ul{
+                width: 3000px;
+                height: 375px;
+                /* background-color: yellow; */
+                animation: move 15s linear infinite normal;
+               
+            }
+            ul li{
+                float: left;
+                list-style: none;
+            }
+            ul li img{
+                width: 500px;
+                height: 375px;
+            }
+            ul:hover{
+                animation-play-state: paused;
+                
+            }
+            ul:hover li{
+                 opacity:0.5;
+            }
+            ul li:hover{
+                opacity:1;
+            }
+            @keyframes move{
+                form{
+                    margin-left:0px;
+                }
+                to{
+                    margin-left: -2000px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <ul>
+                <li><img src="./asstes/banner1.jpg" alt=""></li>
+                <li><img src="./asstes/banner2.png" alt=""></li>
+                <li><img src="./asstes/banner3.png" alt=""></li>
+                <li><img src="./asstes/banner4.png" alt=""></li>
+                <li><img src="./asstes/banner1.jpg" alt=""></li>
+                <li><img src="./asstes/banner2.png" alt=""></li>
+            </ul>
+        </div>
+    </body>
+    <script>
+
+    </script>
+</html>

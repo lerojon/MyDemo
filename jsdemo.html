@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //通过原型继承创建一个新对象
+    function inherit(o) {
+        if (o == null) throw TypeError();
+        if (Object.create) return Object.create(o);
+        var t = typeof o;
+        if (t !== 'object' && t !== 'function') throw TypeError();
+        function f() { };
+        f.prototype = o;
+        return new f();
+    }
+
+    let inher = { r: 1 };
+    console.log(Object.prototype)
+    let inherc = inherit(inher);
+    inherc.a = 3;
+    inherc.b = 2;
+    inherc.r  = 2;
+    delete inherc.r; //不会删除原型的属
+    console.log(inherc.r,'inherc');
+    console.log(typeof inherc.b.toString(),'inher');
+    console.log()
+    let book = new Object();
+    book.subtitle = 'lxj';
+    console.log(Object.prototype);
+    /* let len = undefined;
+    if(book){
+        if(book.subtitle) len = book.subtitle.length;
+    } */
+    /* let len = book.subtitle.length; */
+    let len = book && book.subtitle && book.subtitle.length;
+    console.log(len,'1');
+    /*  function ll(){
+          function jj(){
+           return  setTimeout(()=>{
+                    console.log('xx')
+             },1000)
+         }
+     };
+
+console.log(ll()); */
+let date = new Date();
+let day = date.getDate()
+let {log} = console;
+/* Date.prototype=Date.prototype.__proto__ */
+log(day)
+Object.prototype = 0;
+console.log(Date.prototype,'Datepro')
+     
+</script>
+
+</html>

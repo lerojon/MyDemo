@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>height</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .one {
+            width: 100%;
+            height: 400px;
+            background-color: tomato;
+            float: left;
+        }
+
+        .two {
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .conten {
+            height: 0;
+            overflow: hidden;
+            transition: all 1s;
+            position: absolute;
+            top: 100px;
+            left: 0;
+
+        }
+
+        .two:hover .conten {
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="one">
+        <div class="two">
+            <div class="conten">
+                <a href="">diaslfjalsdjfl;askd</a>
+                <img src="./asstes/banner2.png" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function f1() {
+        for (var i = 0; i < 10; i++) {
+            console.log(i)
+            setTimeout(function () {
+                console.log(i)
+            }, 1000);
+        }
+    }
+    f1();
+</script>
+
+</html>

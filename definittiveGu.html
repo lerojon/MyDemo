@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>definitiveGu</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .showText {
+            background-color: cornflowerblue;
+            /* display: none; */
+        }
+
+        .opens {
+            background-color: crimson;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="open" class="opens">
+        点击打开
+    </div>
+    <div class="showText" id="content">
+        <p>123</p>
+        <p>124</p>
+        <p>125</p>
+        <p>126</p>
+        <p>127</p>
+    </div>
+    <div>sfasfafafasd</div>
+</body>
+<script>
+    let { log: l } = console;
+
+
+    let objs = [];
+    for (let i = 1; i <= 100; i++) {
+        objs.push({
+            'value': `${i * 10000}`,
+            'label': `${i}万`
+        })
+    }
+
+    objs = JSON.stringify(objs)
+
+    l(objs)
+
+
+
+
+
+
+
+
+
+
+    let open = document.getElementById('open');
+    let content = document.getElementById('content');
+    l(open);
+    let show = false;
+    open.onclick = function () {
+        this.show = !this.show;
+        if (this.show) {
+            content.setAttribute('style', 'display: none;')
+        } else {
+
+            content.setAttribute('style', 'display: block;')
+        }
+        console.log('12321')
+
+    }
+    let objsss = {
+        a: "1231",
+        b: "123",
+        c: "gasadf"
+    }
+
+    l(objsss["a"])
+
+    /*计算平均数和标准差*/
+    let data = [1, 23, 4, 4, 5];
+    let total = 0;
+    for (let i = 0; i < data.length; i++) total += data[i];
+    let mens = total / data.length;
+    l(mens);
+
+    let sends = 0;
+    for (let i = 0; i < data.length; i++) {
+        var devi = (data[i] - mens)
+        sends += devi * devi
+    }
+    let stand = Math.sqrt(sends / (data.length - 1));
+
+    l(stand);
+
+    let sum = function (x) {
+        return x * x
+    }
+    let sums = function (x, y) {
+        return x + y
+    }
+
+    let mens2 = data.reduce(sums) / (data.length)
+    l(mens2)
+    // let devi2 = data.map(function(v){ return v })
+    let stand2 = Math.sqrt(data.map(function (v) { return v - mens2 }).map(sum).reduce(sums) / (data.length - 1));
+
+    l(stand2)
+</script>
+
+</html>

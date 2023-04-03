@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D动画</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            perspective: 800px;
+
+        }
+        ul{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            list-style: none;
+            margin: 100px auto;
+            position: relative;
+            /* transform: rotateX(0deg) rotateY(0deg); */
+            transform-style: preserve-3d;
+            animation: sport 5s linear infinite normal;
+        }
+        ul li{
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            font-size: 36px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        ul li img{
+            width: 200px;
+            height: 200px;
+        }
+        ul li:nth-of-type(1){
+            background-color: yellow;
+           transform:translateZ(100px) scaleX(2);
+        }
+        ul li:nth-of-type(2){
+            background-color: red;
+            transform:translateY(100px) rotateX(270deg) scaleX(2);
+        }
+        ul li:nth-of-type(3){
+            background-color: green;
+            transform:translateZ(-100px) rotateX(180deg) scaleX(2);
+        }
+        ul li:nth-of-type(4){
+            background-color: tomato;
+            transform:translateY(-100px) rotateX(90deg) scaleX(2);
+        }
+        ul li:nth-of-type(5){
+            background-color: purple;
+            transform:translateX(200px) rotateY(90deg);
+        }
+        ul li:nth-of-type(6){
+            background-color: skyblue;
+            transform:translateX(-200px) rotateY(90deg);
+        }
+        @keyframes sport{
+            form{
+                transform: rotateX(0deg);
+            }
+            to{
+                transform: rotateX(360deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <ul>
+        <li><img src="./asstes/l1.jpg" alt=""></li>
+        <li><img src="./asstes/l2.jpg" alt=""></li>
+        <li><img src="./asstes/l3.jpg" alt=""></li>
+        <li><img src="./asstes/l4.jpg" alt=""></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+</html>

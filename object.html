@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>使用对象</title>
+  </head>
+  <body>
+    <script>
+      let obj = {
+        hight: 199,
+      }
+      //   obj.c = 100
+      //   console.log(obj.hight)
+
+      Object.defineProperties(obj, {
+        b: {
+          get: function () {
+            return this.hight + 1
+          },
+        },
+        c: {
+          set: function (o) {
+            this.hight = o + 100
+          },
+        },
+      })
+
+      let d = Date.prototype
+      Object.defineProperty(d, "ryea", {
+        get: function () {
+          return this.getFullYear()
+        },
+        set: function (y) {
+          this.setFullYear(y)
+        },
+      })
+      let now = new Date()
+      now.year = 2021
+      console.log(now.year, now)
+    </script>
+  </body>
+</html>

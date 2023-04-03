@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>debounce</title>
+    <style>
+        .debounce {
+            width: 100px;
+            height: 100px;
+            background-color: #ccc;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="debounce" class="debounce" ></div>
+</body>
+<script>
+    let num = 1;
+    let conten = document.getElementById('debounce');
+    function cunt() {
+        conten.innerHTML = num++;
+    }
+
+    /*
+    // 非立即执行的防抖
+    function debounce(fun , wait){ 
+        let timeout ;
+        return function(){
+            let context = this;
+            let arg = arguments;
+            // console.log(timeout,'121');
+            if(timeout) {
+                console.log(timeout,'12');
+                clearTimeout(timeout) ;
+                
+            }
+            console.log(timeout,'122');
+            timeout = setTimeout(()=>{
+                   fun.apply(context , arg); 
+            },wait)
+        }
+    } */
+
+    //立即执行的防抖
+    function debounces(func, wait) {
+        let timeout = undefined;
+        return function () {
+            console.log(timeout, '22');
+            let context = this;
+            let arg = arguments;
+            if (timeout) {         //第一次点击 timeout is undefind 不会执行if语句 向下执行
+                clearTimeout(timeout);
+            }
+            let conow = !timeout; //conow为true
+            timeout = setTimeout(() => { //设置第一个定时器
+                timeout = null; //时间到时timeout为null 则当第二次触发事件时 conow为true 如果在定时器的时间内继续触发事件则timeout为true，并且conow为false， 且会执行上面的if清除定时器的语句，以便重新计时 
+            }, wait);
+            if (conow) func.apply(context, arg);//执行函数
+        }
+    }
+   
+    // let f = debounces(cunt, 1000);
+    // console.log(f)
+    conten.onclick = debounces(cunt, 1000);
+    
+    // function func(nums , target){
+    //     let team = 0;
+    //     let obj = new Map();
+    //     console.log(obj.has(0));
+    //     for(let i=0 ; i<nums.length ; i++){
+    //         team = target - nums[i];
+    //         if(obj.has(team)){
+    //             return [obj.get(team),i];
+    //         }else{
+    //             obj.set(nums[i],i);
+    //         }
+    //     }
+    // }
+
+    // let nums=[2,7,11,15];
+    // let target=9;
+    // console.log(func(nums,target));
+</script>
+
+</html>

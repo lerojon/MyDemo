@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Programmatic Event Listeners using Pikaday</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <input ref="dateInput" id="dateInput" v-model="date" type="text" /> -->
+    </div>
+    <script>
+      let { log } = console
+      function pro_fun(id) {
+        return new Promise(function (resolve, reject) {
+          if (id >= 3) {
+            resolve("success")
+          } else {
+            reject(new Error("err"))
+          }
+        })
+      }
+      /*  new Vue({
+        el: "#app",
+        data: {
+          date: null,
+        },
+        mounted: function () {
+          this.attachDatepicker("dateInput")
+          console.log(
+            this.$refs["dateInput"],
+            document.getElementById("dateInput")
+          )
+        },
+        methods: {
+          attachDatepicker: function (refName) {
+            var picker = new Pikaday({
+              field: this.$refs[refName],
+              format: "YYYY-MM-DD",
+            })
+
+            console.log(21321, picker)
+            this.$once("hook:beforeDestroy", function () {
+              picker.destroy()
+            })
+            console.log(11212, picker)
+          },
+        },
+      })
+      let set = new Set([2, 3, 43, 2, 2, 2, 23, 3, 3, 2])
+      console.log(set.size, Array.from(set)) */
+      let promise = new Promise(function (resolve, reject) {
+        throw new Error("error")
+      })
+      promise
+        .then(function (res) {})
+        .catch(function (err) {
+          console.log("test1:", err)
+        })
+      let p_test2 = new Promise(function (resolve, reject) {
+        try {
+          throw new Error("testError")
+        } catch (e) {
+          reject(e)
+        }
+      })
+      p_test2.catch(function (err) {
+        log("err2", err)
+      })
+      let p_test3 = new Promise(function (resolve, reject) {
+        reject(new Error("test3Error"))
+      })
+      p_test3.catch(function (err) {
+        log("test3", err)
+      })
+
+      let p_test4 = new Promise(function (resolve, reject) {
+        throw new Error("test4")
+      })
+
+      p_test4
+        .catch(function (err) {
+          console.log(err, "errtest4")
+        })
+        .then(function (res) {
+          log("test4:", "res")
+        })
+      log(1231)
+    </script>
+  </body>
+</html>

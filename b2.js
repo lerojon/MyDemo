@@ -1,0 +1,2 @@
+import {axjx} from './a';
+    

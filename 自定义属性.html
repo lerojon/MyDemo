@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let {log} = console;
+       /* 
+        function f(n){
+            if(isFinite(n) && n>0 && n==Math.round(n)){
+                if(!(n in f))
+                f[n] = n*f(n-1);
+                return f[n];
+            }
+            else return NaN;
+        }
+        
+        let count = 0;
+        f[1] = 1;
+        log(f(2));
+        
+        log(d(),'d.count3');
+        function d(){
+            return count++;
+        }
+        log(d(),'d.count');
+        // log(d(),'d.count1');
+        // log(d(),'d.count2');
+*/      
+
+       /* function g(n){
+        //    var n=0;
+            return{
+            get conunter(){
+                return n++;
+            },
+
+            set conunter(m){
+                if(m>=n) m=n;
+                else throw Error('is no')
+            }
+
+            }
+        };
+        let b = g(100);
+        log(b.conunter);
+        log(b.conunter);
+        log(b.conunter);
+        b.conunter = 103;
+        */
+
+        function p(o,name,callb){
+            let value;
+            o['get'+ name] = function(){
+                return value;
+            };
+
+            o['set'+ name] = function(x){
+                if(callb && !callb(x))
+                throw Error('is none');
+                else
+                    value = x;
+            }
+        }
+        
+        let o = {};
+        p(o, 'Name', function(x){return typeof x == 'string'});
+        o.setName('lerjon');
+        log(o.getName());
+        
+
+       
+    </script>
+</body>
+</html>

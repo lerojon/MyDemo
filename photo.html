@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        <input id="images" type="file" accept="image/*">
+        <img id="show_img" src=""></img>
+    </div>
+
+    <script>
+        window.onload = function () {
+            let { log } = console;
+            let ip = document.getElementById('images');
+            let image_s = document.getElementById('show_img');
+            // let a = new Image();
+            ip.onchange = function (e) {
+               let url = window.URL.createObjectURL(ip.files.item(0))
+                log(url , 'urlurl');
+                translate(url);
+                // a.src = e.currentTarget.files[0].name;
+                // image_s.src = ;    // "../../../hundsunCompany/images/14.jpg";
+            }
+
+            function translate(imgSrc) {
+                var img = new Image();
+                img.src = imgSrc;
+                img.onload = function () {
+                    var that = this;
+                    var h = that.height; // 默认按比例压缩		
+                    var w = that.width;
+                    var canvas = document.createElement('canvas');
+                    var ctx = canvas.getContext('2d');
+                    var anw = document.createAttribute("width");
+                    anw.nodeValue = w;
+                    var anh = document.createAttribute("height");
+                    anh.nodeValue = h;
+                    canvas.setAttributeNode(anw);
+                    canvas.setAttributeNode(anh);
+                    ctx.drawImage(that, 0, 0, w, h); //压缩比例		
+                    var quality = 0.6;
+                    var base64 = canvas.toDataURL('image/jpeg', quality);
+                    canvas = null;
+                    var blob = base64ToBlob(base64); // console.log(blob)		//Blob对象转blob地址		
+                    var blobUrl = window.URL.createObjectURL(blob);
+                    // callback(blobUrl);
+                    // callback(blob);
+                    log(blobUrl,blob,'bloburl')
+                }
+            }
+
+            /** 
+             * base转Blob对象
+             * @param {Object} base64 base64地址 
+             */
+            function base64ToBlob(base64) {
+                var arr = base64.split(','),
+                    mime = arr[0].match(/:(.*?);/)[1],
+                    bstr = atob(arr[1]),
+                    n = bstr.length,
+                    u8arr = new Uint8Array(n);
+                while (n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+                return new Blob([u8arr], {
+                    type: mime
+                });
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
