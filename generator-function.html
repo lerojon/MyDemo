@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generator Function</title>
+</head>
+<body>
+<script>
+  let text=()=>{
+        console.log('yes is runing')
+      return 'hhh'
+  };
+
+   function* genterFun(){
+       yield 'hellow';
+       yield 'world';
+       // yield text();
+       return 'okfine'
+   }
+
+   let gf = genterFun()
+   console.log(gf.next(1213123121231))
+  /* console.log(gf.next())
+   console.log(gf.next())
+   console.log(gf.next())
+   console.log(gf.next())
+   console.log(gf.next())*/
+  // let fun = function (){
+  //     console.log(12312312132)
+  //     console.log(gf.next())
+  // }
+  // fun();
+  /*console.log(gf.next())*/
+  // console.log(gf.next())
+
+  function* forFun(){
+      for(var i=0;true;i++){
+          var restart = yield i
+          console.log('restart:',restart)
+          if (restart) i=-1;
+      }
+  }
+  let f = forFun();
+  console.log( f.next())
+  console.log( f.next())
+  console.log( f.next('1231'))
+</script>
+</body>
+</html>

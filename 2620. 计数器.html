@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+/*请你编写并返回一个计数器函数，它接收一个整型参数 n 。这个计数器函数最初返回 n，每次调用它时返回前一个值加 1 的值 ( n , n + 1 , n + 2 ，等等)。*/
+const creatFun=function (n){
+    return function (){
+        return n++
+    }
+}
+let count = creatFun(10);
+console.log('1',count())
+console.log('2',count())
+console.log('3',count())
+</script>
+</body>
+</html>
