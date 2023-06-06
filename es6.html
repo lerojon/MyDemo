@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>es6</title>
+</head>
+<body>
+<script>
+ /*   let f=()=>console.log('now');
+    (async ()=>f())()
+    console.log('next')
+
+    let f2=()=>console.log('now2');
+    (
+        ()=> new Promise(resolve => resolve(f2()))
+    )()
+    console.log('next2')*/
+ let it = makeIterator(['a','b']);
+ function  makeIterator(array){
+     let nextIndex= 0;
+     return {
+         next:function () {
+             return nextIndex<array.length?{value:array[nextIndex++],done:false}:{value:undefined,done:true}
+         }
+     }
+ }
+ console.log(it.next())
+ console.log(it.next())
+ console.log(it.next())
+</script>
+</body>
+</html>

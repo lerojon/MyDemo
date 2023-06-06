@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+ /*这段代码定义了一个名为 `broadcast` 的函数，用于向所有子组件广播指定的事件 `eventName`，并携带指定的参数 `params`。
+该函数参数包含三个，分别是组件名 `componentName`、事件名 `eventName` 和参数数组 `params`。
+函数通过执行 `$children.forEach` 方法来遍历当前组件的所有子组件，并通过 `child.$options.componentName` 找到组件名与 `componentName` 相同的子组件。
+若找到相应的子组件，则执行子组件的 `$emit` 方法，触发相应的事件 `eventName`，并携带参数 `params`。
+若子组件名不为 `componentName`，则递归调用 `broadcast` 函数，继续向其所有子组件广播事件 `eventName`，携带参数 `params`。
+可见该函数通过递归的方式向指定组件的所有后代组件广播指定事件，方便组件间的交互。*/
+    function broadcast(componentName, eventName, params) {
+        this.$children.forEach(child => {
+            var name = child.$options.componentName;
+
+            if (name === componentName) {
+                child.$emit.apply(child, [eventName].concat(params));
+            } else {
+                broadcast.apply(child, [componentName, eventName].concat([params]));
+            }
+        });
+    }
+</script>
+</body>
+</html>
