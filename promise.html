@@ -35,22 +35,44 @@
 </body>
 <script>
     function sleep(duretion) {
-        return new Promise((resole, reject) => {
-            setTimeout(resole, duretion);
+        let p1=new Promise((resolve,reject)=>{
+            console.log('p1')
+            setTimeout(()=>{
+                resolve()
+
+                console.log('isp1')
+            },10000);
         });
+        let p2=new Promise((resolve,reject)=>{
+            console.log('p2')
+            setTimeout(()=>{
+                resolve()
+                console.log('isp2')
+            },20000);
+        })
+        let p3=new Promise((resolve,reject)=>{
+            console.log('p3')
+            setTimeout(()=>{
+                resolve()
+                console.log('isp3')
+            },30000);
+        })
+        return  Promise.all([p1,p2,p3]);
     }
     async function triff(duretion, color) {
-        document.getElementById('one').style.background = color;
-        await sleep(duretion);
+        // document.getElementById('one').style.background = color;
+        await sleep();
+        console.log(12312312)
     }
+    triff()
     // sleep(5000).then(() => {
     //     console.log('sueecss')
     // })
-    async function waitfn() {
+    /*async function waitfn() {
         while (true) {
-            await triff(100000, 'yellow');
-            await triff(200000, 'red');
-            await triff(300000, 'green');
+            await triff(10000, 'yellow');
+            await triff(20000, 'red');
+            await triff(30000, 'green');
         }
     }
     console.log(sleep(1))
@@ -59,7 +81,7 @@
     async function w2() {
         waitfn();
         console.log('123')
-    }
+    }*/
 
     // console.log( w2());
     // waitfn();

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function areObjectsEqual(obj1, obj2) {
+        const keys1 = Object.keys(obj1);
+        const keys2 = Object.keys(obj2);
+        console.log('keys:',keys1,keys2)
+        if (keys1.length !== keys2.length) {
+            return false;
+        }
+
+        for (const key of keys1) {
+            const val1 = obj1[key];
+            const val2 = obj2[key];
+
+            const areObjects = isObject(val1) && isObject(val2);
+
+            if (areObjects && !areObjectsEqual(val1, val2) ||
+                !areObjects && val1 !== val2) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    function isObject(object) {
+        return object != null && typeof object === 'object';
+    }
+
+    function uniqueObjectsByCustomCompare(arr) {
+        return arr.reduce((accumulator, current) => {
+            if (!accumulator.some(item => areObjectsEqual(item, current))) {
+                accumulator.push(current);
+            }
+            return accumulator;
+        }, []);
+    }
+
+    // 示例
+    const objects = [
+        { id: 1, name: 'Alice' },
+        { id: 2, name: 'Bob' },
+        { id: 1, name: 'Alice' } // 重复对象
+    ];
+
+    const uniqueObjects = uniqueObjectsByCustomCompare(objects);
+    console.log(uniqueObjects); // 输出没有重复的对象数组
+
+</script>
+</body>
+</html>

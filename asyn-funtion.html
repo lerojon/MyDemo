@@ -15,6 +15,12 @@
         console.log(123121231)
     })() )()
 
+    Promise.try((function (){
+        console.log(8989898989989)
+    })()).catch((err)=>{
+        console.log(err)
+    })
+
         // 这个是不能用的
     /*(() => new Promise(
         resolve => resolve(f())
