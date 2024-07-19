@@ -23,12 +23,9 @@
 <script>
     let num = 1;
     let conten = document.getElementById('debounce');
-    function cunt() {
-        conten.innerHTML = num++;
-    }
 
     /*
-    // 非立即执行的防抖
+    // 非立即执行的防抖 等待设置的时间才会执行
     function debounce(fun , wait){ 
         let timeout ;
         return function(){
@@ -46,10 +43,14 @@
             },wait)
         }
     } */
+    function cunt() {
+        conten.innerHTML = num++;
+    }
 
     //立即执行的防抖
     function debounces(func, wait) {
         let timeout = undefined;
+        console.log('timeout',timeout)
         return function () {
             console.log(timeout, '22');
             let context = this;
@@ -67,25 +68,14 @@
    
     // let f = debounces(cunt, 1000);
     // console.log(f)
-    conten.onclick = debounces(cunt, 1000);
-    
-    // function func(nums , target){
-    //     let team = 0;
-    //     let obj = new Map();
-    //     console.log(obj.has(0));
-    //     for(let i=0 ; i<nums.length ; i++){
-    //         team = target - nums[i];
-    //         if(obj.has(team)){
-    //             return [obj.get(team),i];
-    //         }else{
-    //             obj.set(nums[i],i);
-    //         }
-    //     }
-    // }
+    /**
+     * onclick = function(){
+     *
+     * }
+     * 点击conten.onclick 相当于执行一个函数事件
+     */
+    conten.onclick = debounces(cunt, 1000);  //一进入页面就已经执行了debounces函数，后面点击onclick事件都是执行已经返回的函数，之前不理解是以为会不断重新执行debounces函数，其实从第二次开始不会执行debounces函数。
 
-    // let nums=[2,7,11,15];
-    // let target=9;
-    // console.log(func(nums,target));
 </script>
 
 </html>
