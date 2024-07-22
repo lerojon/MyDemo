@@ -9,7 +9,7 @@
     function areObjectsEqual(obj1, obj2) {
         const keys1 = Object.keys(obj1);
         const keys2 = Object.keys(obj2);
-        console.log('keys:',keys1,keys2)
+        console.log('keys:', keys1, keys2)
         if (keys1.length !== keys2.length) {
             return false;
         }
@@ -44,9 +44,9 @@
 
     // 示例
     const objects = [
-        { id: 1, name: 'Alice' },
-        { id: 2, name: 'Bob' },
-        { id: 1, name: 'Alice' } // 重复对象
+        {id: 1, name: 'Alice'},
+        {id: 2, name: 'Bob'},
+        {id: 1, name: 'Alice'} // 重复对象
     ];
 
     const uniqueObjects = uniqueObjectsByCustomCompare(objects);
