@@ -6,32 +6,101 @@
 </head>
 <body>
 <script>
+    /**
+     * 请注意，对于更复杂的对象结构和性能考虑，使用库如 Lodash 的 _isEqual 方法可能更为合适。
+     * ### 详细解析 `areObjectsEqual` 函数
+
+     此函数用于 **深度比较** 两个 JavaScript 对象是否完全相等。下面是详细的步骤：
+
+     1. **获取键集合**
+     - 使用 `Object.keys()` 方法分别从 `obj1` 和 `obj2` 中获取键的集合，存储在 `keys1` 和 `keys2` 数组中。
+
+     2. **检查键数量**
+     - 比较 `keys1` 和 `keys2` 的长度。如果长度不同，则说明对象结构不同，立即返回 `false`。
+
+     3. **逐键比较**
+     - 遍历 `keys1` 中的每一个键。
+     - 对于每个键，从 `obj1` 和 `obj2` 中提取对应的值，分别为 `val1` 和 `val2`。
+     - 判断 `val1` 和 `val2` 是否都是对象（使用 `isObject` 函数，该函数未在代码中给出，但可以假设它能正确识别对象）。
+     - 如果两者都是对象，递归调用 `areObjectsEqual` 来比较这两个子对象。
+     - 如果两者都不是对象，直接比较 `val1` 和 `val2` 是否严格相等（使用 `===`）。
+     - 如果递归比较的结果为 `false` 或者非对象的值不相等，函数立即返回 `false`。
+
+     4. **返回结果**
+     - 如果遍历完所有键后没有提前返回 `false`，说明两个对象的所有键值对都相等，因此返回 `true`。
+     * @param obj1
+     * @param obj2
+     * @returns {boolean}
+     * 这个函数能够处理嵌套的对象结构，确保不仅仅是顶层的属性相等，而是整个对象树都一致。
+     */
     function areObjectsEqual(obj1, obj2) {
+        const keys1 = Object.keys(obj1); //keys1 arrary
+        const keys2 = Object.keys(obj2);//keys2 arrary
+        if (keys1.length !== keys2.length) {
+            return false;
+        }
+        for (const key of keys1) {
+            const val1 = obj1[key];
+            const val2 = obj2[key];
+            const areObjects = isObject(val1) && isObject(val2);
+            if (areObjects && !areObjectsEqual(val1, val2) || !areObjects && val1 !== val2) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     *
+     * 另一个比较方法
+     * @param obj1
+     * @param obj2
+     * @returns {boolean}
+
+    function areObjectsEqual(obj1, obj2) {
+        if (obj1 === obj2) {
+            return true;
+        }
+
+        if (typeof obj1 !== 'object' || typeof obj2 !== 'object' || obj1 == null || obj2 == null) {
+            return false;
+        }
+
         const keys1 = Object.keys(obj1);
         const keys2 = Object.keys(obj2);
-        console.log('keys:', keys1, keys2)
+
         if (keys1.length !== keys2.length) {
             return false;
         }
 
-        for (const key of keys1) {
-            const val1 = obj1[key];
-            const val2 = obj2[key];
+        for (let key of keys1) {
+            if (!obj2.hasOwnProperty(key)) {
+                return false;
+            }
 
-            const areObjects = isObject(val1) && isObject(val2);
-
-            if (areObjects && !areObjectsEqual(val1, val2) ||
-                !areObjects && val1 !== val2) {
+            if (typeof obj1[key] === 'object' && typeof obj2[key] === 'object') {
+                if (!areObjectsEqual(obj1[key], obj2[key])) {
+                    return false;
+                }
+            } else if (obj1[key] !== obj2[key]) {
                 return false;
             }
         }
 
         return true;
     }
+    */
 
+
+    /**
+     *  该函数用于判断传入的参数是否为对象。函数首先通过判断参数不为null来排除特殊情况，然后再通过typeof操作符判断参数的类型是否为object。
+     *  需要注意的是，在JavaScript中，数组和函数也是属于对象类型。如果传入的参数满足以上两个条件，则返回true，否则返回false。
+     */
     function isObject(object) {
         return object != null && typeof object === 'object';
     }
+
+
 
     function uniqueObjectsByCustomCompare(arr) {
         return arr.reduce((accumulator, current) => {
@@ -45,7 +114,7 @@
     // 示例
     const objects = [
         {id: 1, name: 'Alice'},
-        {id: 2, name: 'Bob'},
+        {id: 1, name: 'Bob'},
         {id: 1, name: 'Alice'} // 重复对象
     ];
 
