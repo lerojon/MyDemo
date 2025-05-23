@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button class="button"></button>
+<style>
+
+</style>
+<script>
+   /* let {log:l} = console
+   // ES6允许字面量定义对象时用（表达式作为对象的属性名），即把表达式放在方括号里。
+   let propKey = 'foo'
+   let obj = {
+       [propKey]:true,
+       ['b'+'a'+'r']:122
+   }
+   //表达式还可以用于定义方法名
+   let obj2 = {
+       ['h' + 'ello'](){
+           return 1
+       }
+   }
+
+   //注意，属性名表达式如果是一个对象，默认情况下会自动转换为字符串，即对象的toString方法返回的结果（[object Object]）。
+   const keyA = {a:1}
+   const keyB = {b:2}
+    const myObject = {
+       [keyA]:'valueA',
+        [keyB]:'valueB'
+    }
+    myObject //{ [object Object]: 'valueB' } keyB会把keyA覆盖掉
+
+    l(+0===-0)
+    let obj3 = {
+        a:1,
+        b:2
+    }
+    l('sfafa:',...[{
+        a:1,
+        b:2
+    }])
+    let [a,b,c,d,f,g] = [12,34,243,12,331]
+    l(a,b,c,d,f,g)
+     function* myGenerator(){
+        yield 'helelo';
+        yield 'world';
+     }
+    l(myGenerator().next())
+    l(myGenerator().next())
+    l(myGenerator().next())
+     for(const itme of myGenerator()){
+         l('afa:',itme)
+     }
+
+     let setValue = new Set([1,23,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+    l('55:',setValue)
+    let [x,y,z] = setValue
+    l(x,y,z)
+
+    function* fibs(){
+         let a = 0,b = 1;
+         while(true){
+             yield a;
+             [a,b] = [b,a+b]
+             l('aaaa:',a)
+         }
+    }*/
+    /*let [first,second,third,fourth,fifth,sixth,seventh,nineth,tenth] = fibs()
+
+    l(first,second,third,fourth,fifth,sixth,seventh,nineth,tenth)
+
+    let {foo:zzz,baz} = {foo:'12321',baz:12321}*/
+    // zzz = '12321'
+    // l(foo,baz,zzz) //ReferenceError: foo is not defined
+ // let objMap = new Map({aa:123,bbb:123,sss:123})
+    // objMap.set('a',1)
+    // objMap.set('b',2)
+    // objMap.set('c',3)
+
+    /*for(const [key,value] of objMap ){
+        l('key:',key,'value:',value)
+    }*/
+    // l(objMap.get('aa'),'sadfs')
+
+    /*l(NaN===NaN)
+    l(null === null)
+    l(undefined===undefined)
+
+    l(typeof Object.assign('aqqq'))
+
+    //Mixin
+    let mix = (object)=>({
+        with:(...mixins) =>  mixins.reduce(
+            (c,mixin)=>Object.create(
+                c,Object.getOwnPropertyDescriptors(mixin)
+            ),object
+        )
+    })*/
+
+   //变量提升
+   /*var tmp = new Date()
+   function f(){
+    console.log(tmp);
+    if(false){
+        var tmp = 'hahhh'
+    }
+   }
+   f()*/
+
+  /* function* fibs(){
+       let a=0;
+       let b=1;
+       while(true){
+           yield a;
+           [a,b]=[b,a+b];
+       }
+   }
+   let [first,second,third,fourth,fifth,sixth]=fibs();
+
+   console.log(sixth)*/
+
+  /* class Button{
+       constructor(){
+           this.text = "Click me";
+           this.handleClick = this.handleClick
+       }
+
+       handleClick = ()=>{
+           console.log('Button text:',this)
+       }
+   }
+
+   const button = new Button();
+   document.querySelector("button").addEventListener('click',button.handleClick);
+
+    // 简化的EventBus 实现
+   class EventBus{
+       constructor() {
+           this.listeners = {};
+       }
+
+       on(event,callback){
+           if(!this.listeners[event]){
+               this.listeners[event] = []
+           }
+           this.listeners[event].push(callback)
+       };
+
+       emit(event,data){
+           if(this.listeners[event]){
+               this.listeners[event].forEach((callback) => callback(data) )
+           }
+       };
+
+       off(event,callback){
+           if(this.listeners[event]){
+               this.listeners[event] = this.listeners[event].filter(fn => fn !== callback);
+           }
+       }
+   }
+
+    const eventBus = new EventBus()
+   eventBus.on('user',(user)=>{
+       console.log("用户登录：", user.name)
+   })
+
+   eventBus.emit("user",{name:'Alices'})*/
+
+
+let {log:l} = console
+   //原型链
+   // function Person(){
+   //  this.name = 'lerojon'
+   //  this.arrs = ['BasketBall','Football']
+   // }
+   /*Person.prototype.name = 'lerojon';
+   Person.prototype.HayHello = function (){
+       console.log('i am',this.name)
+   }
+   let person = new Person();
+   let person2 = new Person();
+   person.HayHello()
+    person.name = 'codeme'
+console.log(person2.name,person.name)*/
+
+   // Person.prototype = {
+   //     constructor:Person,
+   //    /* name:'age',
+   //     year:2025,
+   //     arrs:['age','hooks']*/
+   //     HayHello : function (){
+   //         console.log('i am',this.name)
+   //     }
+   // }
+
+   /*Object.defineProperty(Person.prototype,'constructor',{
+       enumerable:false,
+       value:Person
+   })*/
+
+
+  /* let person3 = new Person();
+   let person4 = new Person();
+   l(person3.constructor === Person)
+   l(person3.name)
+    person3.name = 'lerojon2'
+   l(person3.name,person4.name)
+   person3.arrs.push('steup')
+   l(person3.arrs,person4.arrs)*/
+
+   //组合构造函数
+   function Animal(age){
+       this.age = age
+       this.animalPropertry = 'animal';
+       this.arrs = ['red','bule']
+   }
+
+   Animal.prototype.animalFunction = function (){
+       console.log('animalFunciton:',this.animalPropertry)
+   }
+
+   function Person(){
+       Animal.call(this,18)
+       this.personPropertry = 'person';
+   }
+
+   Person.prototype = new Animal()
+
+   Person.prototype.personFunction = function (){
+       console.log('personFunction:',this.age,this.animalPropertry)
+   }
+
+   person1 = new Person();
+   person2 = new Person();
+
+   person1.arrs.push('pain');
+   l(person1.arrs)
+   l(person2.arrs)
+   person1.animalFunction()
+   person2.personFunction()
+</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+(()=>{"use strict";console.log("i want to work!")})();

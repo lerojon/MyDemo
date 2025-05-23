@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .styleDe{
+            width: 100px;
+            height: 100px;
+            background-color: #4662d9;
+        }
+    </style>
+</head>
+<body>
+<div id="debounce" class="styleDe">
+
+</div>
+</body>
+<script>
+    /**
+     * @param {Function} func - 需要防抖的目标函数
+     * @param {number} wait - 等待时间（毫秒）
+     * @param {Object} options - 配置选项
+     * @param {boolean} [leading=false] - 是否立即执行
+     * @param {boolean} [trailing=true] - 是否延迟执行
+     * @returns {Function} 防抖处理后的函数 （含cancel方法）
+     */
+    function debounce(func,wait,options){
+        if(typeof func !== 'function'){
+            throw new TypeError('func is not a function')
+        };
+
+        //配置防抖参数
+        const {leading=false,trailing=true} = options
+        let timerd = null;
+        let lastArgs = [];
+        let lastThis = null;
+        let result = null;
+
+        //清除定时器方法
+        const clearTimerd = ()=>{
+            if(timerd ){
+                clearTimeout(timerd);
+                timerd = null;
+            }
+        };
+
+        //延迟执行方法
+        const invokeFunc = ()=>{
+            if(trailing && lastArgs!== null){
+               // timerd = setTimeout(()=>{
+                result =  func.apply(lastThis,lastArgs)
+                    lastArgs = null
+                    lastThis = null;
+              //  },wait)
+            }
+        }
+
+        //防抖主体函数
+        const debounced = (...args)=>{
+            lastArgs = args;
+            lastThis = this;
+            //是否立即执行
+            if(leading && !timerId){
+                result = func.apply(lastThis,lastArgs)
+            }
+            // 重置定时器
+            clearTimerd(); //
+            timerd = setTimeout(()=>{//
+                invokeFunc()
+                clearTimerd()
+            },wait);//
+
+
+        };
+        //取消防抖
+        debounced.cancel = ()=>{
+            clearTimerd()
+            lastArgs = null;
+            lastThis = null;
+        }
+        //立即执行函数
+        debounced.flush=()=>{
+            clearTimerd()
+           return  invokeFunc()
+
+        }
+        return debounced
+    }
+    document.getElementById('debounce').onclick = debounce(()=>{
+        console.log(12321312)
+    },300,{leading:false,trailing:true})
+</script>
+</html>

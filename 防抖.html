@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖</title>
+    <style>
+        .styleDe{
+            width: 100px;
+            height: 100px;
+            background-color: #4662d9;
+        }
+    </style>
+</head>
+<body>
+<div id="debounce" class="styleDe">
+
+</div>
+
+</body>
+<script>
+   /**
+    * 高性能防抖函数
+    * @param {Function} func - 需要防抖的目标函数
+    * @param {number} wait - 等待时间（毫秒）
+    * @param {Object} options - 配置选项
+    * @param {boolean} [options.leading=false] - 是否立即执行首次调用
+    * @param {boolean} [options.trailing=true] - 是否在延迟结束后执行
+    * @returns {Function} 防抖处理后函数（含cancel方法）
+    * */
+    function debounce(func,wait,options={}){
+        //参数校验
+       if(typeof func !== 'function'){
+           throw new TypeError('Expected a function');
+       }
+
+       //配置处理
+       const {leading=false,trailing=true }=options;
+       //闭包变量‌：
+       let timerId = null;
+       //保存最近一次调用的参数和上下文（this）
+       let lastArgs = [];
+       let lastThis = null;
+       //存储目标函数的返回值（若需要）。
+       let result = null;
+
+       // 清除定时器 ‌作用‌：安全清除现有的定时器，防止内存泄漏。 关键点‌：每次调用防抖函数前必须清除旧定时器，避免多个定时器竞争。
+       const  clearTimer = () =>{
+           if(timerId){
+               clearTimeout(timerId);
+               timerId = null;
+           }
+       };
+
+       // 延迟执行函数
+       const invokeFunc = () => {
+         if(trailing && lastArgs !== null){
+             result = func.apply(lastThis,lastArgs)
+             //重置 lastArgs 和 lastThis，避免重复执行。
+             lastArgs = null;
+             lastThis = null;
+         }
+       };
+
+       //防抖函数主体
+       const debounced = function (...args){
+           lastArgs = args;
+           lastThis = this;
+
+           // 立即执行分支
+           if(leading && !timerId){
+               result = func.apply(this,args);
+           }
+
+           // 重置定时器
+           clearTimer();
+           timerId = setTimeout(()=>{
+               invokeFunc();
+               clearTimer();
+           },wait);
+       };
+
+       // 添加取消方法
+       debounced.cancel = ()=>{
+           clearTimer();
+           lastArgs = null;
+           lastThis = null;
+       };
+
+       //添加立即执行方法
+       debounced.flush=()=>{
+           clearTimer();
+           return invokeFunc();
+       };
+       return debounced
+   }
+
+
+
+    document.getElementById('debounce').onclick = debounce (()=>{
+            console.log(1123)
+        },300,{leading:false,trailing:true})
+
+
+</script>
+
+</html>
